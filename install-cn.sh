@@ -3,6 +3,7 @@
 # setup timezone
 echo "[TASK 0] Set timezone"
 timedatectl set-timezone Asia/Shanghai
+apt-get update >/dev/null 2>&1
 apt-get install -y ntpdate >/dev/null 2>&1
 ntpdate ntp.aliyun.com
 
