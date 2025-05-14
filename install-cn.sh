@@ -38,8 +38,8 @@ apt-get update >/dev/null 2>&1
 apt-get install -y containerd >/dev/null 2>&1
 mkdir -p /etc/containerd
 containerd config default >/etc/containerd/config.toml
-#sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
-sed -i 's/registry.k8s.io\/pause:3.8/registry.aliyuncs.com\/google_containers\/pause:3.9/g' /etc/containerd/config.toml
+sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+sed -i 's/registry.k8s.io\/pause:3.8/registry.aliyuncs.com\/google_containers\/pause:3.10/g' /etc/containerd/config.toml
 
 systemctl restart containerd
 systemctl enable containerd >/dev/null 2>&1
