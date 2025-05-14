@@ -54,3 +54,7 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirro
 apt-get update >/dev/null 2>&1
 apt-get install -y kubelet kubeadm kubectl >/dev/null 2>&1
 apt-mark hold kubelet kubeadm kubectl >/dev/null 2>&1
+
+echo "[TASK 8] Print something"
+containerd --version
+kubelet --version
