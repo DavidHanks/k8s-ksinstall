@@ -1,5 +1,9 @@
 #!/bin/bash
 
+echo "update os"
+sudo apt update && sudo apt upgrade -y >/dev/null 2>&1
+sudo apt install -y apt-transport-https ca-certificates curl software-properties-common >/dev/null 2>&1
+
 # setup timezone
 echo "[TASK 0] Set timezone"
 timedatectl set-timezone Asia/Shanghai
@@ -46,11 +50,10 @@ systemctl enable containerd >/dev/null 2>&1
 
 
 echo "[TASK 7] Add apt repo for kubernetes"
-apt-get update >/dev/null 2>&1 && apt-get install -y apt-transport-https >/dev/null 2>&1
-curl -fsSL https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.29/deb/Release.key |
-    gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.29/deb/ /" |
-    tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.33/deb/Release.key | \
+sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.33/deb/ /" |
+    sudo tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update >/dev/null 2>&1
 apt-get install -y kubelet kubeadm kubectl >/dev/null 2>&1
 apt-mark hold kubelet kubeadm kubectl >/dev/null 2>&1
