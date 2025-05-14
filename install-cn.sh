@@ -53,3 +53,4 @@ echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirro
     tee /etc/apt/sources.list.d/kubernetes.list
 apt-get update >/dev/null 2>&1
 apt-get install -y kubelet kubeadm kubectl >/dev/null 2>&1
+apt-mark hold kubelet kubeadm kubectl >/dev/null 2>&1
