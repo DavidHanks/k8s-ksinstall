@@ -23,10 +23,12 @@ vi /etc/containerd/config.toml
 				]
 sudo systemctl restart containerd
 sudo systemctl status containerd
-3、初始化集群
+3、拉取默认镜像
+sudo kubeadm config images pull --image-repository=registry.aliyuncs.com/google_containers
+4、初始化集群
 kubeadm init   --image-repository registry.aliyuncs.com/google_containers   --pod-network-cidr=10.244.0.0/16   --apiserver-advertise-address=172.17.29.150 --ignore-preflight-errors=Mem
 #忽略内存不足警告 --ignore-preflight-errors=Mem
-4、安装网络插件
+5、安装网络插件
 wget https://docs.projectcalico.org/manifests/calico.yaml
 #下载calico配置文件
 - name: CALICO_IPV4POOL_CIDR
