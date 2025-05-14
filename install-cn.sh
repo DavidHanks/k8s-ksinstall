@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "update os"
-sudo apt update && sudo apt upgrade -y >/dev/null 2>&1
+sudo apt update >/dev/null 2>&1 && sudo apt upgrade -y >/dev/null 2>&1
 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common >/dev/null 2>&1
 
 # setup timezone
