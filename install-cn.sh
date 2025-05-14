@@ -34,8 +34,8 @@ EOF
 sysctl --system >/dev/null 2>&1
 
 echo "[TASK 6] Install containerd runtime"
-apt -qq update >/dev/null 2>&1
-apt install -qq -y containerd.io >/dev/null 2>&1
+apt-get update >/dev/null 2>&1
+apt-get install -y containerd >/dev/null 2>&1
 mkdir -p /etc/containerd
 containerd config default >/etc/containerd/config.toml
 #sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
@@ -46,7 +46,7 @@ systemctl enable containerd >/dev/null 2>&1
 
 
 echo "[TASK 7] Add apt repo for kubernetes"
-apt-get update && apt-get install -y apt-transport-https >/dev/null 2>&1
+apt-get update >/dev/null 2>&1 && apt-get install -y apt-transport-https >/dev/null 2>&1
 curl -fsSL https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.29/deb/Release.key |
     gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://mirrors.aliyun.com/kubernetes-new/core/stable/v1.29/deb/ /" |
